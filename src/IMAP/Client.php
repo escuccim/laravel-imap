@@ -272,7 +272,7 @@ class Client {
      * @return array
      * @throws GetMessagesFailedException
      */
-    public function getMessages(Folder $folder, $criteria = 'ALL', $fetch_options = null)
+    public function getMessages(Folder $folder, $criteria = 'ALL', $fetch_options = FT_UID)
     {
         $this->checkConnection();
 
@@ -293,7 +293,6 @@ class Client {
             return $messages;
         } catch (\Exception $e) {
             $message = $e->getMessage();
-
             throw new GetMessagesFailedException($message);
         }
     }

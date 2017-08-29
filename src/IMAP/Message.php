@@ -321,7 +321,6 @@ class Message {
                 }
 
                 $encoding = $this->getEncoding($structure);
-
                 $content = imap_fetchbody($this->client->connection, $this->uid, $partNumber, $this->fetch_options);
                 $content = $this->decodeString($content, $structure->encoding);
                 $content = $this->convertEncoding($content, $encoding);
