@@ -226,8 +226,8 @@ class Client {
             if ($hierarchical && $folder->hasChildren()) {
                 $pattern = $folder->fullName.$folder->delimiter.'%';
 
-                $children = $this->getFolders(true, $pattern);
-                $folder->setChildren($children);
+//                $children = $this->getFolders(true, $pattern);
+//                $folder->setChildren($children);
             }
             $folders[] = $folder;
         }
@@ -314,7 +314,7 @@ class Client {
      *
      * @return string
      */
-    protected function getAddress()
+    public function getAddress()
     {
         $address = "{".$this->host.":".$this->port."/imap";
         if (!$this->validate_cert) {
