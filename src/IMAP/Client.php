@@ -208,7 +208,7 @@ class Client {
      *
      * @return array
      */
-    public function getFolders($hierarchical = true, $parent_folder = null)
+    public function getFolders($hierarchical = false, $parent_folder = null)
     {
         $this->checkConnection();
         $folders = [];
@@ -225,9 +225,8 @@ class Client {
 
             if ($hierarchical && $folder->hasChildren()) {
                 $pattern = $folder->fullName.$folder->delimiter.'%';
-
-//                $children = $this->getFolders(true, $pattern);
-//                $folder->setChildren($children);
+                $children = $this->getFolders(true, $pattern);
+                $folder->setChildren($children);
             }
             $folders[] = $folder;
         }
@@ -313,7 +312,7 @@ class Client {
      *
      * @return string
      */
-    public function getAddress()
+    protected function getAddress()
     {
         $address = "{".$this->host.":".$this->port."/imap";
         if (!$this->validate_cert) {
